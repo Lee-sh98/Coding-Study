@@ -1,0 +1,1 @@
+solution = lambda arr, idx: ([i for i, v in enumerate(arr) if i>=idx and v] or [-1])[0]
