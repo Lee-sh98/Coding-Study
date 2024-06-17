@@ -1,0 +1,1 @@
+solution = lambda intStrs, k, s, l: list(filter(k.__lt__, map(lambda x: int(x[s:s+l]), intStrs)))
