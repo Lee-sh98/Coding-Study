@@ -1,0 +1,1 @@
+solution = lambda t, p: sum(t[i:i+len(p)]<=p for i in range(len(t) - len(p) + 1))
