@@ -1,5 +1,11 @@
+import sys
+input = sys.stdin.readline
+
 while True:
     try:
-        print(input())
+        if s:=input():
+            print(s, end="")
+        else:
+            break
     except:
         break
