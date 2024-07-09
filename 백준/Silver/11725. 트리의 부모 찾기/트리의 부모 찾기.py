@@ -10,14 +10,14 @@ for _ in range(N-1):
     edges[b].add(a)
 
 parent = list(range(N+1))
-q = deque([(1, -1)])
+q = deque([1])
 prev = 1
 
 while q:
-    cur, par = q.popleft()
+    cur = q.popleft()
     for i in edges[cur]:
         if parent[i] == i:
             parent[i] = cur
-            q.append([i,cur])
+            q.append(i)
 
 print(*parent[2:], sep="\n")
