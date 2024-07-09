@@ -1,23 +1,19 @@
 import sys
-from heapq import *
 input = sys.stdin.readline
 
 N = int(input())
-arr = [(int(x), idx) for idx, x in enumerate(input().split())]
-result = [0]*N
-heapify(arr)
+arr = [(idx, int(x)) for idx, x in enumerate(input().split())]
+ard = {}
+result = [-1]*N
+for idx, x in arr:
+    if x not in ard:
+        ard[x] = set([idx])
+    else:
+        ard[x].add(idx)
 
-prev = None
-acc = 0
-rank = 0
+for idx, k in enumerate(sorted(ard)):
+    for v in ard[k]:
+        result[v] = idx
 
-while arr:
-    x, idx = heappop(arr)
-    if prev != x:
-        rank += acc
-        acc = 1
-    
-    result[idx] = rank
-    prev = x
     
 print(*result, sep=" ")
