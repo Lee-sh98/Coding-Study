@@ -7,5 +7,5 @@ while len(q) != 1:
     q.popleft()
     if len(q) == 1:
         break
-    q.append(q.popleft())
+    q.rotate(-1)
 print(q.pop())
