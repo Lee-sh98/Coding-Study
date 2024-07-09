@@ -2,7 +2,7 @@ import sys
 import heapq
 input = sys.stdin.readline
 
-def dp(func):
+def dp():
     mem = []
     heapq.heapify(mem)
     def helper(n):
@@ -15,7 +15,7 @@ def dp(func):
             heapq.heappush(mem, -n)
     return helper
 
-action = dp(lambda x: x)
+action = dp()
 
 N = int(input())
 for _ in range(N):
