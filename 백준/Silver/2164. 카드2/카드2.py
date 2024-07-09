@@ -1,11 +1,10 @@
 import sys
-from collections import deque
-N = int(sys.stdin.readline())
-q = deque(range(1, N+1))
+from math import *
+def func(N):
+    M = 2**floor(log2(N))
+    last = 2*(N-M)
+    return (N, last)[last!=0]
 
-while len(q) != 1:
-    q.popleft()
-    if len(q) == 1:
-        break
-    q.rotate(-1)
-print(q.pop())
+N = int(sys.stdin.readline())
+
+print(func(N))
