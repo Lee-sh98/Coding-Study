@@ -2,15 +2,13 @@ import sys
 input = sys.stdin.readline
 
 def quad_tree(arr):
-    total = 0
+    total = set()
     n = len(arr)
     
     for line in arr:
-        total += sum(line)
-    if total == 0:
-        return "0"
-    elif total == n**2:
-        return "1"
+        total |= set(line)
+    if len(total) == 1:
+        return str(list(total)[0])
     else:
         result = "("
         for i in [0, n//2]:
