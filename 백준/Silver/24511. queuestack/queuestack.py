@@ -3,15 +3,11 @@ from collections import deque
 input = sys.stdin.readline
 
 N = int(input())
-A = list(map(int, input().split()))
-B = list(map(int, input().split()))
+A = map(int, input().split())
+B = map(int, input().split())
 M = int(input())
-C = map(int, input().split())
+C = list(map(int, input().split()))
 
-dq = deque([b for a, b in zip(A, B) if not a])
-result = [0]*M
+dq = C[::-1]+[b for a, b in zip(A, B) if not a]
 
-for i, c in enumerate(C):
-    dq.appendleft(c)
-    result[i] = dq.pop()
-print(*result)
+print(*dq[::-1][:M])
