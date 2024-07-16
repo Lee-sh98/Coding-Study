@@ -1,5 +1,6 @@
 import sys
 input = sys.stdin.readline
+print = sys.stdout.write
 
 n = int(input())
 s = set()
@@ -9,4 +10,5 @@ for _ in range(n):
     name, commend = input().split()
     action[commend](name)
 
-print(*sorted(s, reverse=True), sep="\n")
+for v in sorted(s, reverse=True):
+    print(v+'\n')
