@@ -1,5 +1,4 @@
 import sys
-from collections import deque
 input = sys.stdin.readline
 
 def solution(arr):
@@ -14,6 +13,6 @@ def solution(arr):
     return not stack
 
 N = int(input())
-arr = deque(map(int, input().split()))
+arr = map(int, input().split())
 
 print(("Sad", "Nice")[solution(arr)])
