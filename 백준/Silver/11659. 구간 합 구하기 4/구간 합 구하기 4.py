@@ -2,14 +2,12 @@ import sys
 input = sys.stdin.readline
 
 N, M = map(int, input().split())
-mem = {}
-cumulative = [0]
+arr = list(map(int, input().split()))
+acc = [0]*(N+1)
 
-for number in map(int, input().split()):
-    cumulative.append(cumulative[-1] + number)
+for i in range(N):
+    acc[i+1] = acc[i] + arr[i]
     
 for _ in range(M):
-    start, end = map(int, input().split())
-    if (start, end) not in mem:
-        mem[start, end] = cumulative[end] - cumulative[start-1]
-    print(mem[start, end])
+    i, j = map(int, input().split())
+    print(acc[j]-acc[i-1])
