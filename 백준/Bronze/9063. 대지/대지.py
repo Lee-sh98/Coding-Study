@@ -1,9 +1,14 @@
 import sys
-from functools import reduce
+
 input = sys.stdin.readline
 
 N = int(input())
 
-arr = map(list, zip(*(map(int, input().split()) for _ in range(N))))
+maxx, maxy = minx, miny = list(map(int, input().split()))
 
-print(reduce(int.__mul__, map(lambda t: max(t)-min(t), arr)))
+for _ in range(N-1):
+    x, y = list(map(int, input().split()))
+    maxx, maxy = max(x, maxx), max(y, maxy)
+    minx, miny = min(x, minx), min(y, miny)
+
+sys.stdout.write(str((maxx-minx)*(maxy-miny)))
