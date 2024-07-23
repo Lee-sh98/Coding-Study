@@ -25,11 +25,12 @@ while q:
     for i in range(1, 7):
         nxt = cur+i
 
-        if visited[nxt]:
-            continue
-        
         if nxt in portal:
             nxt = portal[nxt]
+
+        if visited[nxt]:
+            continue
+
         q.append((nxt, count + 1))
         visited[nxt] = 1
         
