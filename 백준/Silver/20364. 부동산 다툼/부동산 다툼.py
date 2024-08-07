@@ -1,15 +1,14 @@
 import sys
-from math import log2
 input = sys.stdin.readline
 
 N, Q = map(int, input().split())
-arr = [int(input()) for _ in range(Q)]
 town = [0]*(N+1)
 
-for q in arr:
-    cur = q
+for _ in range(Q):
+    cur = q = int(input())
     mem = -1
-    while cur != 1:
+    
+    while cur > 1:
         if town[cur]:
             mem = cur
         cur //= 2
@@ -18,4 +17,4 @@ for q in arr:
         print(mem)
     else:
         print(0)
-    town[q] = 1
+        town[q] = 1
