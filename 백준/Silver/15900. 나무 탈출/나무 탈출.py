@@ -12,17 +12,20 @@ for _ in range(N-1):
     edges[a].append(b)
     edges[b].append(a)
 
-visited = [0]*(N+1)
-q = [(root, 0)]
+distance = [-1]*(N+1)
+leafNode = [True]*(N+1)
 result = 0
+q = [(root, 0)]
 
 while q:
-    cur, distance = q.pop()
-    visited[cur] = 1
-    if not any(visited[adj]==0 for adj in edges[cur]):
-        result += distance
+    cur, d = q.pop()
+    distance[cur] = d
     for child in edges[cur]:
-        if not visited[child]:
-            q.append((child, distance + 1))
-    
+        if distance[child] == -1:
+            leafNode[cur] = False
+            q.append((child, d + 1))
+
+for i in range(1, N+1):
+    if leafNode[i]:
+        result += distance[i]
 print(("No", "Yes")[result%2])
