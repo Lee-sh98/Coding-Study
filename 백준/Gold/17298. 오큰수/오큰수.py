@@ -1,19 +1,16 @@
 # 17298 NGE
 
 import sys
-input = sys.stdin.readline
-
 
 N = int(input())
-A = list(enumerate(map(int, input().split())))
+A = list(map(int, sys.stdin.readline().split()))
+
 stack = []
-stack.append(A[0])
 result = [-1]*N
 
-for i, a in A[1:]:
-    while stack and stack[-1][1] < a:
-        j, _ = stack.pop()
-        result[j] = a
-    stack.append((i, a))
+for i in range(N):
+    while stack and A[stack[-1]] < A[i]:
+        result[stack.pop()] = A[i]
+    stack.append(i)
 
 print(" ".join(map(str, result)))
