@@ -1,21 +1,20 @@
 import sys
-from collections import defaultdict
 input = sys.stdin.readline
 
-def solution(arr, k):
-    n = len(arr)
-    if n == 1:
-        result[k].append(arr[0])
-    else:
-        solution(arr[:n//2], k+1)
-        result[k].append(arr[n//2])
-        solution(arr[n//2+1:], k+1)
-        
+def solution(k, left, right):
+    mid = (right+left)//2
+
+    if left==right:
+        result[k].append(arr[mid])
+    elif left<right:
+        solution(k+1, left, mid-1)
+        result[k].append(arr[mid])
+        solution(k+1, mid+1, right)
 
 K = int(input())
 arr = input().split()
-result = defaultdict(list)
-solution(arr, 0)
+result = [[] for _ in range(K)]
+solution(0, 0, len(arr)-1)
 
 for i in range(K):
     print(" ".join(result[i]))
