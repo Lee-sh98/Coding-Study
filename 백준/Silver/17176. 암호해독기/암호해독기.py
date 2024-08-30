@@ -4,12 +4,15 @@ input = sys.stdin.readline
 
 N = int(input())
 value = [" "]+[chr(i+ord('A')) for i in range(26)]+[chr(j+ord('a')) for j in range(26)]
-key = dict(zip(range(53), value)) 
+key = dict(zip(value, range(53))) 
 
-secret = map(lambda x: value[int(x)], input().split())
-plain = input().rstrip()
+secret = [0]*53
+plain = [0]*53
 
-secret_count = list(sorted(Counter(secret).items()))
-plain_count = list(sorted(Counter(plain).items()))
+for i in map(int, input().split()):
+    secret[i] += 1
 
-print(("n","y")[all(map(lambda x, y: x==y, secret_count, plain_count))])
+for j in input().rstrip():
+    plain[key[j]] += 1
+
+print(("n","y")[secret == plain])
