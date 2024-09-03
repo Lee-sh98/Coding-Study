@@ -7,11 +7,15 @@ def dfs(root):
     
     while stack != []:
         cur, dist = stack.pop()
-        cost[cur] = (cur, dist)
+        cost[cur] = dist
         for node, next_dist in adj[cur]:
             if cost[node] == -1:
                 stack.append((node, dist+next_dist))
-    return max(cost[1:], key=lambda x: x[1])
+    idx = 0
+    for i in range(V+1):
+        if cost[idx] < cost[i]:
+            idx = i
+    return idx, cost[idx]
 
 V = int(input())
 
@@ -21,6 +25,6 @@ for _ in range(V):
 
     adj[node] = [(child[i], child[i+1]) for i in range(0, len(child), 2)]
 
-tmp_node, _ = dfs(1)
-_, result = dfs(tmp_node)
+tmp, _ = dfs(1)
+_, result = dfs(tmp)
 print(result)
