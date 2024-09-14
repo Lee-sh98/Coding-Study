@@ -6,17 +6,21 @@ arr = list(map(int, input().split()))
 
 j = 0
 odds = 0
-length = 0
+evens = 0
 result = 0
 
 for i in range(N):
     while j<N and odds<=K:
-        odds += arr[j]%2
-        length += 1-arr[j]%2
+        if arr[j]%2:
+            odds += 1
+        else:
+            evens += 1
         j += 1
     
-    result = max(result, length)
-    odds -= arr[i]%2
-    length -= 1-arr[i]%2
+    result = max(result, evens)
+    if arr[i]%2:
+        odds -= 1
+    else:
+        evens -= 1
 
 print(result)
