@@ -3,15 +3,18 @@ input = sys.stdin.readline
 
 r = 31
 M = 1234567891
+def hashing(lst, r, m):
+    ri = 1
+    H = 0
+    for a in lst:
+        H += a*ri
+        ri *= r
+        H %= m
+    return H
 
 L = int(input())
 S = input().rstrip()
-result = 0
+mapper = dict(zip("abcdefghijklmnopqrstuvwxyz", range(1, 27)))
+lst = list(map(mapper.__getitem__, S))
 
-def unique_number(c):
-    return ord(c)-ord('a')+1
-
-for i, c in enumerate(S):
-    result += unique_number(c)*pow(r, i, M)
-
-print(result)
+print(hashing(lst, r, M))
