@@ -14,10 +14,10 @@ if n>0:
     arr.sort()
 
     sep = new_round(n*0.15)
-    target = arr[sep:-sep]
-
+    
     if sep:
-        print(new_round(sum(target)/len(target)))
+        target = arr[sep:-sep]
+        print(new_round(sum(target)/(n-2*sep)))
     else:
         print(new_round(sum(arr)/n))
 else:
