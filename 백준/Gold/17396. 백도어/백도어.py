@@ -5,8 +5,9 @@ INF = float('inf')
 
 N, M = map(int, input().split())
 visible = list(map(int, input().split()))
-visible[-1] = 0
+visible[N-1] = 0
 graph = [[] for _ in range(N)]
+
 for _ in range(M):
     a, b, t = map(int, input().split())
     if not visible[b]:
@@ -30,7 +31,7 @@ while q:
             distances[node] = cost
             heappush(q, (cost, node))
 
-if distances[-1] != INF:
-    print(distances[-1])
+if distances[N-1] != INF:
+    print(distances[N-1])
 else:
     print(-1)
