@@ -9,8 +9,10 @@ visible[-1] = 0
 graph = [[] for _ in range(N)]
 for _ in range(M):
     a, b, t = map(int, input().split())
-    graph[a].append((b, t))
-    graph[b].append((a, t))
+    if not visible[b]:
+        graph[a].append((b, t))
+    if not visible[a]:
+        graph[b].append((a, t))
 
 distances = [INF]*N
 distances[0] = 0
@@ -24,7 +26,7 @@ while q:
         continue
     for node, next_dist in graph[cur]:
         cost = dist + next_dist
-        if cost < distances[node] and not visible[node]:
+        if cost < distances[node]:
             distances[node] = cost
             heappush(q, (cost, node))
 
