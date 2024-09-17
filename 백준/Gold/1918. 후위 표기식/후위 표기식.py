@@ -1,33 +1,29 @@
 import sys
 
-def compare(a, b):
-    return priority[a]>=priority[b]
-
 s = sys.stdin.readline().rstrip()
-priority = {'*': 3, '/': 3,
-            '+': 2, '-': 2,
-            '(': 1}
+
 stack = []
-result = []
+result = ""
+
 for c in s:
-    match c:
-        case '(':
-            stack.append(c)
-
-        case '+'|'-'|'*'|'/':
-            while stack and compare(stack[-1], c):
-                result.append(stack.pop())
-            stack.append(c)
-
-        case ')':
-            while stack[-1] != '(':
-                result.append(stack.pop())
-            stack.pop()
-
-        case _:
-            result.append(c)
+    if c.isalpha():
+        result+=c
+    elif c == '(':
+        stack.append(c)
+    elif c in "*/":
+        while stack and stack[-1] in "*/":
+            result += stack.pop()
+        stack.append(c)
+    elif c in "+-":
+        while stack and stack[-1] != '(':
+            result += stack.pop()
+        stack.append(c)
+    elif c == ')':
+        while stack and stack[-1] != '(':
+            result += stack.pop()
+        stack.pop()
 
 while stack:
-    result.append(stack.pop())
+    result += stack.pop()
 
-print("".join(result))
+print(result)
