@@ -14,9 +14,10 @@ for _ in range(N):
         heappush(rq, num)
 
     if rq and -lq[0]>rq[0]:
-        lv, rv = heappop(lq), heappop(rq)
+        lv = -heappop(lq)
+        rv = -heappop(rq)
 
-        heappush(lq, -rv)
-        heappush(rq, -lv)
+        heappush(lq, rv)
+        heappush(rq, lv)
 
     print(-lq[0])
