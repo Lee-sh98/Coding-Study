@@ -5,24 +5,18 @@ S = input().rstrip()
 explosive = input().rstrip()
 n = len(explosive)
 stack = []
-check = 0
 
 for c in S:
     if not stack:
-        if c == explosive[0]:
-            stack.append((c, 1))
-        else:
-            stack.append((c, 0))
+        stack.append((c, c==explosive[0]))
     else:
         if c == explosive[stack[-1][1]]:
             stack.append((c, stack[-1][1]+1))
-        elif c == explosive[0]:
-            stack.append((c, 1))
         else:
-            stack.append((c, 0))
+            stack.append((c, c==explosive[0]))
 
-    if stack[-1][1] == len(explosive):
-        for i in range(len(explosive)):
+    if stack[-1][1] == n:
+        for i in range(n):
             stack.pop()
 
 if stack:
