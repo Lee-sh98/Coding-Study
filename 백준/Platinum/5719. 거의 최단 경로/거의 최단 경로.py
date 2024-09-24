@@ -1,6 +1,5 @@
 import sys
 from heapq import *
-from collections import deque
 input = sys.stdin.readline
 INF = int(1e9)
 
