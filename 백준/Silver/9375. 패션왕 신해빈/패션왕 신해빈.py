@@ -1,18 +1,19 @@
 import sys
-from collections import defaultdict
 input = sys.stdin.readline
 
 T  = int(input())
 for _ in range(T):
-    fashion = defaultdict(int)
+    fashion = {}
     n = int(input())
 
     for _ in range(n):
         name, kind = input().split()
+        if kind not in fashion:
+            fashion[kind] = 1
         fashion[kind] += 1
 
     result = 1
-    for count in fashion.values():
-        result *= count+1
+    for i in fashion:
+        result *= fashion[i]
 
     print(result - 1)
