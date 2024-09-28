@@ -1,23 +1,26 @@
 import sys
 
+def supply1(prev, cover):
+    for p in prev:
+        yield p.join(cover)
+
+def supply2(prev):
+    for p in zip(prev, prev):
+        yield " ".join(p)
+
 def solve(n):
     if n==3:
         return ["  *  ", " * * ", "*****"]
 
-    half = n//2
-    prev = solve(half)
+    n >>= 1
+    prev = solve(n)
     result = []
-
-    for i in range(half):
-        tmp = " "*half + prev[i] + " "*half
-        result.append(tmp)
-
-    for i in range(half):
-        tmp = prev[i] + " " + prev[i]
-        result.append(tmp)
-
-    return result
+    cover = [" "*n, " "*n]
     
+    r1 = list(supply1(prev, cover))
+    r2 = list(supply2(prev))
+    
+    return r1+r2
 
 N = int(sys.stdin.readline())
 result = solve(N)
