@@ -25,20 +25,21 @@ def wolf_run(start):
     distances = [[INF, INF] for _ in range(N+1)]
     distances[start] = [0, INF]
 
-    q = [(0, start, 0)]
+    q = [(0, start, False)]
     while q:
         dist, cur, seq = heappop(q)
+        nseq = not seq
+        
         if distances[cur][seq] < dist:
             continue
         
         for node, next_dist in edges[cur]:
             cost = dist+(next_dist/2, next_dist*2)[seq]
-            if cost < distances[node][1-seq]:
-                distances[node][1-seq] = cost
-                heappush(q, (cost, node, 1-seq))
-                
+            if cost < distances[node][nseq]:
+                distances[node][nseq] = cost
+                heappush(q, (cost, node, nseq))
 
-    return distances[1:]
+    return list(map(min, distances[1:]))
 
 N, M = map(int, input().split())
 edges = [[] for _ in range(N+1)]
@@ -50,5 +51,5 @@ for _ in range(M):
 fox = fox_run(1)
 wolf = wolf_run(1)
 
-result = sum(map(lambda f, w: f<min(w), fox, wolf))
+result = sum(map(lambda f, w: f<w, fox, wolf))
 print(result)
