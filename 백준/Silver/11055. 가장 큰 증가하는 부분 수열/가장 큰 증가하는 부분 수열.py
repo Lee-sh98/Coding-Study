@@ -4,7 +4,7 @@ input = sys.stdin.readline
 
 N = int(input())
 arr = list(map(int, input().split()))
-dp = [a for a in arr]
+dp = arr[:]
 
 for i in range(N):
     for j in range(i):
