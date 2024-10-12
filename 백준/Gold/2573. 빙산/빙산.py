@@ -1,12 +1,11 @@
 import sys
-from collections import defaultdict
 input = sys.stdin.readline
 
 def check():
     if len(island) == 1:
         return 1
     
-    visited = [[0]*M for _ in range(N)]
+    visited = [[False]*M for _ in range(N)]
     count = 0
     for x, y in island:
         if not visited[x][y]:
@@ -14,22 +13,23 @@ def check():
             stack = [(x, y)]
             while stack:
                 cx, cy = stack.pop()
-                visited[cx][cy] = 1
+                visited[cx][cy] = True
                 for dx, dy in directions:
                     nx, ny = cx+dx, cy+dy
                     if (nx, ny) in island and not visited[nx][ny]:
+                        visited[nx][ny] = True
                         stack.append((nx, ny))
 
     return count
 
 def melt():
-    melts = defaultdict(int)
+    melts = {}
 
     for x, y in island:
         for dx, dy in directions:
             nx, ny = x+dx, y+dy
             if arr[nx][ny] == 0:
-                melts[x, y] += 1
+                melts[x, y] = melts.get((x, y), 0) + 1
     
     for x, y in melts:
         arr[x][y] = max(arr[x][y]-melts[x, y], 0)
