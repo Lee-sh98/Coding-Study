@@ -8,16 +8,16 @@ rects = [[False]*9 for _ in range(9)]
 blanks = []
 
 for i in range(9):
-    for j in range(9):
+    for j , a in enumerate(arr[i]):
         if arr[i][j] == 0:
             blanks.append((i, j))
         else:
-            rows[i][arr[i][j]-1] = True
-            cols[j][arr[i][j]-1] = True
-            rects[(i//3*3)+(j//3)][arr[i][j]-1] = True
+            rows[i][a-1] = True
+            cols[j][a-1] = True
+            rects[(i//3*3)+(j//3)][a-1] = True
 
 def check(x, y, a):
-    return not(rows[x][a]) and not(cols[y][a]) and not(rects[(x//3*3)+(y//3)][a])
+    return not rows[x][a] and not cols[y][a] and not rects[(x//3*3)+(y//3)][a]
 
 def dfs(idx):
     if idx == len(blanks):
@@ -33,7 +33,9 @@ def dfs(idx):
             rows[x][i] = True
             cols[y][i] = True
             rects[(x//3*3)+(y//3)][i] = True
+
             dfs(idx+1)
+
             arr[x][y] = 0
             rows[x][i] = False
             cols[y][i] = False
