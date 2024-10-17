@@ -12,10 +12,10 @@ def solve(arr):
             return count
 
         for per in pers[len(scv)-1]:
-            attacked = tuple(map(int.__sub__, scv, per))
-            if attacked not in visited:
-                visited.add(attacked)
-                remains = list(filter(int(0).__lt__, attacked))
+            attacked = map(int.__sub__, scv, per)
+            remains = tuple(sorted(filter(int(0).__lt__, attacked)))
+            if remains not in visited:
+                visited.add(remains)
                 q.append((remains, count+1))
 
 N = int(input())
