@@ -3,26 +3,26 @@ from collections import deque
 from itertools import permutations
 input = sys.stdin.readline
 
-def bfs(arr):
-    q = deque()
-    q.append(arr)
-
+def solve(arr):
+    q = deque([(arr, 0)])
+    
     while q:
-        x,y,z = scv = q.popleft()
+        scv, count = q.popleft()
         if not any(scv):
-            return visited[x][y][z]-1
+            return count
 
-        for per in pers:
-            nx, ny, nz = map(lambda s, p: max(s-p, 0), scv, per)
-            if not visited[nx][ny][nz]:
-                visited[nx][ny][nz] = visited[x][y][z] + 1
-                q.append([nx,ny,nz])
+        for per in pers[len(scv)-1]:
+            attacked = tuple(map(int.__sub__, scv, per))
+            if attacked not in visited:
+                visited.add(attacked)
+                remains = list(filter(int(0).__lt__, attacked))
+                q.append((remains, count+1))
 
 N = int(input())
 x, y, z = SCV = list(map(int, input().split()))+[0]*(3-N)
-visited = [[[0]*61 for _ in range(61)] for _ in range(61)]
-visited[x][y][z] = 1
-pers = list(permutations([9, 3, 1], 3))
+visited = set()
+damage = [9, 3, 1]
+pers = [list(permutations(damage[:i], i)) for i in range(1, 4)]
 
-result = bfs(SCV)
+result = solve(SCV)
 print(result)
