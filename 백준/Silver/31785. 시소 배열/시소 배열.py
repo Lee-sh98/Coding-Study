@@ -5,6 +5,7 @@ MAX = 500_001
 Q = int(input())
 i, j = 0, 0
 acc = [0]*MAX
+result = []
 
 for _ in range(Q):
     commend, *operand = map(int, input().split())
@@ -13,12 +14,13 @@ for _ in range(Q):
         j += 1
     else:
         half = (i+j)//2
-        if acc[half]-acc[i] > acc[j]-acc[half]:
-            print(acc[j]-acc[half])
+        front, back = acc[half]-acc[i], acc[j]-acc[half]
+        result.append(str(min(front, back)))
+        
+        if front > back:
             j = half
         else:
-            print(acc[half]-acc[i])
             i = half
 
-for x in range(i, j):
-    print(acc[x+1]-acc[x], end=" ")
+print("\n".join(result))
+print(" ".join(map(lambda x: str(acc[x+1]-acc[x]), range(i, j))))
