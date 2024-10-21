@@ -2,12 +2,7 @@ import sys
 input = sys.stdin.readline
 
 def count(line):
-    result = 0
-    for s in line:
-        for c in s:
-            result += c=="9"
-
-    return result
+    return "".join(line).count("9")
 
 n, m = map(int, input().split())
 
@@ -17,10 +12,7 @@ col_count = list(map(count, zip(*arr)))
 
 if max(row_count)>max(col_count):
     row = max(range(n), key=row_count.__getitem__)
-    arr[row] = ["0"]*m
+    print(sum(row_count)-row_count[row])
 else:
     col = max(range(m), key=col_count.__getitem__)
-    for i in range(n):
-        arr[i][col] = "0"
-
-print(sum(map(count, arr)))
+    print(sum(col_count)-col_count[col])
