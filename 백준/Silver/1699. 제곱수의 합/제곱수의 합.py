@@ -1,16 +1,13 @@
 import sys
+from math import sqrt
+
 N = int(sys.stdin.readline())
-
 sq = []
-dp = list(range(N+1))
+dp = [0]*(N+1)
 
-i = 1
-while i*i <= N:
-    sq.append(i*i)
-    i += 1
-
-for s in sq:
-    for i in range(s, N+1):
-        dp[i] = min(dp[i], dp[i-s]+1)
+for i in range(1, N+1):
+    if sqrt(i)%1 == 0:
+        sq.append(i)
+    dp[i] = min(dp[i-s] for s in sq)+1
 
 print(dp[N])
