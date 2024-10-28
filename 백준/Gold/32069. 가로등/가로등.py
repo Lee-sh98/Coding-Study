@@ -1,23 +1,23 @@
 import sys
-from collections import deque
-input = lambda: map(int, sys.stdin.readline().split())
+from heapq import *
+input = lambda: list(map(int, sys.stdin.readline().split()))
+INF = int(1e9)
 
 L, N, K = input()
-lights = list(input())
-street = [-1]*(L+1)
+lights = input()
+street = {}
 
-q = deque((0, light) for light in lights)
 for l in lights:
     street[l] = 0
 
-while q:
-    brightness, cur = q.popleft()
-    
+q = [(0, l) for l in lights]
+while q and len(street) < K:
+    brightness, cur = heappop(q)
+    if street.get(cur, INF) < brightness:
+        continue
     for d in [-1, 1]:
         node = cur+d
-        
-        if 0<=node<=L and street[node]==-1:
+        if 0<=node<=L and brightness+1 < street.get(node, INF):
             street[node] = brightness+1
-            q.append((brightness+1, node))
-
-print("\n".join(map(str, sorted(street)[:K])))
+            heappush(q, (brightness+1, node))
+print("\n".join(map(str, sorted(street.values())[:K])))
