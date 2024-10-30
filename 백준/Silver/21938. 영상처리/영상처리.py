@@ -15,12 +15,12 @@ screen = [[0]*M for _ in range(N)]
 for i in range(N):
     line = list(map(int, input().split()))
     for j in range(M):
-        screen[i][j] = sum(line[3*j:3*j+3])
+        screen[i][j] = sum(line[3*j:3*j+3])/3
 
 T = int(input())
 for i in range(N):
     for j in range(M):
-        screen[i][j] = (screen[i][j]/3>=T)*255
+        screen[i][j] = screen[i][j]>=T
 
 directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
 count = 0
