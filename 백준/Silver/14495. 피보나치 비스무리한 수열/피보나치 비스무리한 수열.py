@@ -1,8 +1,8 @@
 import sys
 
 n = int(sys.stdin.readline())
-dp = [1]*(n+1)
-for i in range(4, n+1):
-    dp[i] = dp[i-1]+dp[i-3]
+a = b = c = 1
+for i in range(n-3):
+    a, b, c = b, c, a+c
 
-print(dp[n])
+print(c)
