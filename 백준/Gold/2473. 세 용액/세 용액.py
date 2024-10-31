@@ -7,7 +7,7 @@ arr.sort()
 
 result = abs(sum(arr[:3]))
 liquid = tuple(arr[:3])
-
+found = False
 for i in range(N-2):
     l, r = i+1, N-1
     while l<r:
@@ -18,9 +18,12 @@ for i in range(N-2):
 
         if cur < 0:
             l += 1
-        elif cur == 0:
-            break
-        else:
+        elif cur > 0:
             r -= 1
+        else:
+            found = True
+            break
+    if found:
+        break
 
 print(*sorted(liquid))
