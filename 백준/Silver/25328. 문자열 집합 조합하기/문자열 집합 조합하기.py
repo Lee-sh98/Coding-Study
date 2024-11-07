@@ -1,8 +1,4 @@
-from collections import Counter
-from itertools import combinations as t,chain
+import collections as x, itertools as y
 *W,k=(input() for _ in range(4))
-c=Counter(chain(*map(lambda w:t(w,int(k)),W)))
-if(r:=sorted(filter(lambda d:c[d]>=2,c))):
-    print("\n".join(map("".join,r)))
-else:
-    print(-1)
+r=sorted(filter(lambda d:c[d]>=2,c:=x.Counter(y.chain(*map(lambda w:y.combinations(w,int(k)),W)))))
+print(("\n".join(map("".join,r)),-1)[not r])
