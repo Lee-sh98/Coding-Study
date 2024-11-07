@@ -1,13 +1,11 @@
-import sys
 from collections import Counter
-from itertools import combinations, chain
-input = sys.stdin.readline
+from itertools import combinations as t, chain
 
-W = [input().rstrip() for _ in range(3)]
-k = int(input())
-count = Counter(chain(*map(lambda w: combinations(w, k), W)))
+*W, k = (input() for _ in range(4))
 
-if (result:=sorted(filter(lambda c: count[c]>=2, count))):
-    print("\n".join(map("".join, result)))
+c = Counter(chain(*map(lambda w: t(w, int(k)), W)))
+
+if (r:=sorted(filter(lambda d: c[d]>=2, c))):
+    print("\n".join(map("".join, r)))
 else:
     print(-1)
