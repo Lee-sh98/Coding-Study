@@ -1,4 +1,4 @@
 import sys
-input = lambda: sys.stdin.readline().rstrip()
+input = sys.stdin.readline
 
 print(("go", "no")[len(input())<len(input())])
