@@ -3,7 +3,7 @@ input = lambda: map(int, sys.stdin.readline().split())
 
 def dfs(s, c):
     v[c][s] = v[s][c] = 1
-
+    
     for t in e[c]:
         if not v[s][t]:
             dfs(s, t)
@@ -19,4 +19,4 @@ for _ in range(M):
 for i in range(N):
     dfs(i, i)
 
-print(sum(map(lambda i: sum(v[i])==N, range(N))))
+print(sum(sum(v[i])==N for i in range(N)))
