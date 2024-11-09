@@ -1,22 +1,22 @@
 import sys
-input = sys.stdin.readline
+input = lambda: map(int, sys.stdin.readline().split())
 
-def dfs(start, cur):
-    visited[start][cur] = 1
-    visited[cur][start] = 1
-    for taller in edges[cur]:
-        if not visited[start][taller]:
-            dfs(start, taller)
+def dfs(s, c):
+    v[c][s] = v[s][c] = 1
 
-N, M = map(int, input().split())
-visited = [[0]*N for _ in range(N)]
-edges = [[] for _ in range(N)]
+    for t in e[c]:
+        if not v[s][t]:
+            dfs(s, t)
+
+N, M = input()
+v = [[0]*N for _ in range(N)]
+e = [[] for _ in range(N)]
 
 for _ in range(M):
-    a, b = map(int, input().split())
-    edges[a-1].append(b-1)
+    a, b = input()
+    e[a-1].append(b-1)
 
 for i in range(N):
     dfs(i, i)
 
-print(sum(map(lambda i: sum(visited[i])==N, range(N))))
+print(sum(map(lambda i: sum(v[i])==N, range(N))))
