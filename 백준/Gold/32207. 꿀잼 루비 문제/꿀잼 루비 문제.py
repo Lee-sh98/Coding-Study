@@ -10,16 +10,15 @@ def valid(x, y):
 
 def solve(idx, count, value):
     global result
-    if count>K:
-        return
-    result = max(result, value)
-    
-    for i in range(idx, min(N*M, 36)):
-        v, x, y = data[i]
-        if valid(x, y):
-            visited[x][y] = 1
-            solve(i+1, count+1, value+v)
-            visited[x][y] = 0
+    if count<=K:
+        result = max(result, value)
+        
+        for i in range(idx, min(N*M, 25)):
+            v, x, y = data[i]
+            if valid(x, y):
+                visited[x][y] = 1
+                solve(i+1, count+1, value+v)
+                visited[x][y] = 0
 
 N, M, K = map(int, input().split())
 directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
