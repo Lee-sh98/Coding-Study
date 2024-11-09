@@ -1,24 +1,22 @@
 import sys
 input = sys.stdin.readline
-INF = int(1e9)
+
+def dfs(start, cur):
+    visited[start][cur] = 1
+    visited[cur][start] = 1
+    for taller in edges[cur]:
+        if not visited[start][taller]:
+            dfs(start, taller)
 
 N, M = map(int, input().split())
-dp = [[0]*N for _ in range(N)]
-indegree = [0]*N
-outdegree = [0]*N
+visited = [[0]*N for _ in range(N)]
+edges = [[] for _ in range(N)]
 
 for _ in range(M):
     a, b = map(int, input().split())
-    dp[a-1][b-1] = 1
-    indegree[b-1] += 1
-    outdegree[a-1] += 1
+    edges[a-1].append(b-1)
 
-for k in range(N):
-    for i in range(N):
-        for j in range(N):
-            if not dp[i][j] and dp[i][k] and dp[k][j]:
-                dp[i][j] = 1
-                indegree[j] += 1
-                outdegree[i] += 1
+for i in range(N):
+    dfs(i, i)
 
-print(sum(map(lambda i: indegree[i]+outdegree[i] == N-1, range(N))))
+print(sum(map(lambda i: sum(visited[i])==N, range(N))))
