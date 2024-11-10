@@ -1,3 +1,4 @@
 import itertools as i
-k,*a=[input()for _ in range(int(input())+1)]
+f=input
+k,*a=[f()for _ in range(int(f())+1)]
 print(len(set(map("".join,i.permutations(a,int(k))))))
