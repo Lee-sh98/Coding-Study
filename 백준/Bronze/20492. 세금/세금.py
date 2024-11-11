@@ -1,2 +1,2 @@
-N=int(input())//1000
-print(N*780,N*956)
+N=int(input())//250
+print(N*195,N*239)
