@@ -1,14 +1,8 @@
-import sys
-input = sys.stdin.readline
-
-n, m = map(int, input().split())
-dp = [list(map(int, input().rstrip())) for _ in range(n)]
-
-for i in range(n):
-    for j in range(m):
-        if i==0 or j==0 or not dp[i][j]:
-            continue
-        dp[i][j]+=min(dp[i-1][j],dp[i][j-1],dp[i-1][j-1])
-        
-result = max(map(max, dp))
-print(result*result)
+r=range
+n,m=map(int,input().split())
+d=[list(map(int,input()))for _ in r(n)]
+for i in r(1,n):
+    for j in r(1,m):
+        if d[i][j]:
+            d[i][j]+=min(d[i-1][j],d[i][j-1],d[i-1][j-1])
+print(max(map(max,d))**2)
