@@ -1,33 +1,24 @@
 import sys
-input = sys.stdin.readline
 sys.setrecursionlimit(10**6)
 
-def solve(cur,select):
-    if dp[cur][select] != -1:
-        return dp[cur][select]
+def f(c,s):
+    if w[c][s]:
+        return w[c][s]
+    w[c][s] = p[c]*s
+    for d in r[c]:
+        w[c][s]+=max(f(d,0),f(d,1)*(1-s))
+    return w[c][s]
 
-    dp[cur][select] = point[cur]*select
-    for child in children[cur]:
-        dp[cur][select]+=max(solve(child, i) for i in range(2-select))
-    return dp[cur][select]
-
-N = int(input())
-point = [0]+[*map(int, input().split())]
-edges = [[] for _ in range(N+1)]
-children = [[] for _ in range(N+1)]
-dp = [[-1]*2 for _ in range(N+1)]
-
-for _ in range(N-1):
-    A,B = map(int, input().split())
-    edges[A].append(B)
-    edges[B].append(A)
-
-stack = [1]
-while stack:
-    cur = stack.pop()
-    for child in edges[cur]:
-        if not children[child]:
-            children[cur].append(child)
-            stack.append(child)
-
-print(max(solve(1, i) for i in range(2)))
+(N,),p,*s=[[*map(int,i.split())]for i in open(0)]
+p = [0]+p
+q,r,w = zip(*[[[],[],[0]*2]for _ in range(N+1)])
+for A,B in s:
+    q[A].append(B);q[B].append(A)
+t = [1]
+while t:
+    c = t.pop()
+    for d in q[c]:
+        if not r[d]:
+            r[c].append(d)
+            t.append(d)
+print(max(f(1, 0), f(1, 1)))
