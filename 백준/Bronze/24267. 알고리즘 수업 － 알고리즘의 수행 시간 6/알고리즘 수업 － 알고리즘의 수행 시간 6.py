@@ -1,2 +1,1 @@
-n=int(input())
-print(f'{(sum((i-1)*i//2 for i in range(2,n)), 0)[n<3]}\n3')
+print((n:=int(input()))*(n-1)*(n-2)//6,"\n3")
