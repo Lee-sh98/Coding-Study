@@ -1,2 +1,2 @@
-(L,P),a,=[[*map(int,i.split())] for i in open(0)]
+L,P,*a=map(int,open(0).read().split())
 print(*map((L*P).__rsub__,a))
