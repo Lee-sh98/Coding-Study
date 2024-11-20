@@ -1,37 +1,18 @@
-import sys
-from collections import deque
-input = sys.stdin.readline
-
-WALL, EMPTY, JH, FIRE = "#.JF"
-
+E,J,F=".JF"
 R, C = map(int, input().split())
-maze = [[*input().rstrip()] for _ in range(R)]
-q=deque()
-result = "IMPOSSIBLE"
-directions = [(1,0), (-1,0), (0,1), (0,-1)]
-targets = [(JH, EMPTY), (FIRE, JH, EMPTY)]
-
-for i in range(R):
-    for j in range(C):
-        if maze[i][j] == JH:
-            q.appendleft((i,j,1))
-        elif maze[i][j] == FIRE:
-            q.append((i,j,1))
-
-while q:
-    x,y,time=q.popleft()
-    cur=maze[x][y]
-    if cur==JH and (x==0 or x==R-1 or y==0 or y==C-1):
-        result = time
-        break
-    
-    for dx,dy in directions:
-        nx, ny = x+dx, y+dy
-        if 0<=nx<R and 0<=ny<C:
-            nxt=maze[nx][ny]
-            for t, *u in targets:
-                if cur==t and any(nxt==v for v in u):
-                    maze[nx][ny]=cur
-                    q.append((nx,ny,time+1))
-
-print(result)
+m = [[*input()]for _ in range(R)]
+q,s=[],0
+r = "IMPOSSIBLE"
+for i in range(R*C):
+    j,k=i//C,i%C
+    if m[j][k]==J:
+        q=[(j,k,1)]+q
+    elif m[j][k]==F:
+        q+=[(j,k,1)]
+while s<len(q):
+    x,y,t=q[s];s+=1;w=m[x][y]
+    if w==J and(x==0 or x==R-1 or y==0 or y==C-1):r=t;break
+    for f,g in zip((x+1,x-1,x,x),(y,y,y+1,y-1)):
+        for a,*b in((J,E),(F,J,E)):
+            if 0<=f<R and 0<=g<C and w==a and any(map(m[f][g].__eq__,b)):m[f][g]=w;q+=[(f,g,t+1)]
+print(r)
