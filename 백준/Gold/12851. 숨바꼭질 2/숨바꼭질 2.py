@@ -4,7 +4,6 @@ N, K = map(int,input().split())
 distances = [MAX]*MAX
 distances[N]=0
 result = 0
-functions = [int(1).__add__, int(-1).__add__, int(2).__mul__]
 
 q = [(0, N)]
 while q:
@@ -15,13 +14,11 @@ while q:
         result += 1
         continue
 
-    for f in functions:
-        nxt = f(cur)
-        if 0<=nxt<MAX:
+    for nxt in [cur+1, cur-1, 2*cur]:
+        if 0<=nxt<MAX and dist+1<=distances[nxt]:
             if dist+1 < distances[nxt]:
                 reuslt = 0
-            if dist+1 <= distances[nxt]:
-                distances[nxt] = dist+1
-                heappush(q, (dist+1, nxt))
+            distances[nxt] = dist+1
+            heappush(q, (dist+1, nxt))
 print(distances[K])
 print(result)
