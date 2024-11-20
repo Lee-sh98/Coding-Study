@@ -1,9 +1,8 @@
 N,K=map(int,input().split())
-q,w,v,x=[N],[M:=100001]*M,[s:=0]*M,[]
-while s<len(q) and (c:=q[s])!=K:
-    s+=1
+q,w,e,r,t=[N],[M:=100001]*M,[0]*M,[K],-1
+while(c:=q[t:=t+1])-K:
     for d in(c+1,c-1,2*c):
-        if 0<=d<M and w[d]==M:v[d]=v[c]+1;w[d]=c;q+=[d]
-print(v[K])
-while K!=N:x+=[K];K=w[K]
-print(N,*x[::-1])
+        if 0<=d<M and w[d]==M:q+=[d];w[d]=c;e[d]=e[c]+1
+print(e[K])
+while K-N:r+=[K:=w[K]]
+print(*r[::-1])
