@@ -1,24 +1,10 @@
-from heapq import *
-MAX = 100_001
-N, K = map(int,input().split())
-distances = [MAX]*MAX
-distances[N]=0
-result = 0
-
-q = [(0, N)]
+import collections as w
+M=100001
+N,K=map(int,input().split())
+q,v=w.deque([N]),[M]*M;v[N]=r=0
 while q:
-    dist, cur = heappop(q)
-    if distances[cur] < dist:
-        continue
-    if cur == K:
-        result += 1
-        continue
-
-    for nxt in [cur+1, cur-1, 2*cur]:
-        if 0<=nxt<MAX and dist+1<=distances[nxt]:
-            if dist+1 < distances[nxt]:
-                reuslt = 0
-            distances[nxt] = dist+1
-            heappush(q, (dist+1, nxt))
-print(distances[K])
-print(result)
+    c=q.popleft();r+=1*(c==K)
+    for d in(c+1,c-1,2*c):
+        if 0<=d<M and v[c]<v[d]:v[d]=v[c]+1;q.append(d)
+print(v[K])
+print(r)
