@@ -1,3 +1,2 @@
 import re
-_,*a=open(0).read().split()
-for b in a:print("YES"if re.fullmatch(r"(100+1+|01)+",b)else"NO")
+for _ in" "*int(input()):print(re.match("(100+1+|01)+$",input())and"YES"or"NO")
