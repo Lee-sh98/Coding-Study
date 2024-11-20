@@ -5,9 +5,15 @@ input = sys.stdin.readline
 def is_exit(x, y):
     return x == 0 or x==h-1 or y==0 or y==w-1
 
-def is_valid(x, y):
+def is_building(x, y):
     return 0<=x<h and 0<=y<w
 
+def is_valid(x, y, *target):
+    return any(map(building[x][y].__eq__,target))
+
+def visit(x, y, nx, ny):
+    building[nx][ny] = building[x][y]
+    q.append((nx, ny, time+1))
 EMPTY, WALL, SG, FIRE = ".#@*"
 
 T = int(input())
@@ -34,12 +40,9 @@ for _ in range(T):
         for dx, dy in directions:
             nx, ny = x+dx, y+dy
 
-            if is_valid(nx, ny):
-                nxt = building[nx][ny]
-                if cur == SG and nxt == EMPTY:
-                    building[nx][ny] = SG
-                    q.append((nx, ny, time+1))
-                elif cur == FIRE and (nxt == SG or nxt==EMPTY):
-                    building[nx][ny] = FIRE
-                    q.append((nx, ny, time+1))
+            if is_building(nx, ny):
+                if is_valid(x,y,SG) and is_valid(nx,ny,EMPTY):
+                    visit(x,y,nx,ny)
+                elif is_valid(x,y,FIRE) and is_valid(nx,ny,SG,EMPTY):
+                    visit(x,y,nx,ny)
     print(result)
