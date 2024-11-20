@@ -1,0 +1,1 @@
+print(int(str(sum(map(int,map(lambda a:a[::-1],input().split()))))[::-1]))
