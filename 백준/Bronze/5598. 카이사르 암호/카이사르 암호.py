@@ -1,0 +1,1 @@
+print(*map(lambda x:chr(65+(ord(x)+10)%26),input()),sep="")
