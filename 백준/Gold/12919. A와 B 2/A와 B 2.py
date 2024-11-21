@@ -1,8 +1,5 @@
 def f(x):
-    if not x:return 0
-    if len(x)==len(S):return x==S
-    a=x[-1]=='A'and f(x[:-1]);b=x[0]=='B'and f(x[1:][::-1])
-    return a or b
-
+    if not x or len(x)==len(S):return x==S
+    return (x[-1]=='A'and f(x[:-1]))or(x[0]=='B'and f(x[1:][::-1]))
 S,T=input(),input()
 print(int(f(T)))
