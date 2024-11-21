@@ -1,9 +1,3 @@
-import collections as c
-i=""
-while True:
-    try:
-        i+=input()
-    except:break
-a=c.Counter(filter(str.isalpha,i))
-b=max(a.values())
-print(*sorted(filter(lambda x:a[x]==b,a)),sep="")
+a=[0]*26
+for c in filter(str.isalpha,open(0).read()):a[ord(c)-97]+=1
+print(*[chr(i+97) for i in range(26) if a[i]==max(a)],sep="")
