@@ -1,1 +1,1 @@
-print(*map(lambda x:chr(65+(ord(x)+10)%26),input()),sep="")
+print(*[chr(65+(ord(c)+10)%26)for c in input()],sep="")
