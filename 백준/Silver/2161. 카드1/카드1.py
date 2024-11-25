@@ -1,4 +1,2 @@
 q=[*range(int(input()))]
-while q:
-    print(q.pop(0)+1,end=" ")
-    if q:p,*q=q;q+=[p]
+while q:print(q.pop(0)+1,end=" ");not q and exit();p,*q=q;q+=[p]
