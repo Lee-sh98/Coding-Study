@@ -1,5 +1,4 @@
-from collections import deque
-q=deque(range(int(input())))
-r=[]
-while q:r+=[str(q.popleft()+1)];q.rotate(-1)
-print(" ".join(r))
+q=[*range(int(input()))]
+while q:
+    print(q.pop(0)+1,end=" ")
+    if q:p,*q=q;q+=[p]
