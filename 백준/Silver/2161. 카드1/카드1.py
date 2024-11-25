@@ -1,5 +1,5 @@
 from collections import deque
-q = deque(range(1,int(input())+1))
-r = []
-while q:r.append(str(q.popleft()));q.rotate(-1)
+q=deque(range(int(input())))
+r=[]
+while q:r+=[str(q.popleft()+1)];q.rotate(-1)
 print(" ".join(r))
