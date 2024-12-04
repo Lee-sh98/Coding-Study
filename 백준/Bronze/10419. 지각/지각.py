@@ -1,1 +1,1 @@
-for _ in range(int(input())):print(int(-1+(1+4*int(input()))**0.5)//2)
+for d in[*open(0)][1:]:print(int(-1+(1+4*int(d))**0.5)//2)
