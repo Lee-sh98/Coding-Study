@@ -1,0 +1,1 @@
+for _ in range(int(input())):print(int(-1+(1+4*int(input()))**0.5)//2)
