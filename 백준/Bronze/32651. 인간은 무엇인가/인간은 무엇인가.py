@@ -1,0 +1,1 @@
+print("YNeos"[(N:=int(input()))%2024!=0 or N>10**5::2])
