@@ -1,0 +1,1 @@
+for s in[*open(0)][1:]:print(*[c[::-1]for c in s.split()])
