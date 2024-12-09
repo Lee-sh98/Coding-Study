@@ -1,0 +1,1 @@
+for s in open(0):print(*map(lambda f:sum(f(c) for c in s),[str.islower,str.isupper,str.isdigit,' '.__eq__]))
