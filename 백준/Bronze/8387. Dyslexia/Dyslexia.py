@@ -1,0 +1,1 @@
+print(sum(map(str.__eq__,*[*open(0)][1:]))-1)
