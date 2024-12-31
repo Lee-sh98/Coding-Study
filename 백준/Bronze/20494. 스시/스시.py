@@ -1,0 +1,1 @@
+print(sum(len(s)-1 for s in[*open(0)][1:]))
