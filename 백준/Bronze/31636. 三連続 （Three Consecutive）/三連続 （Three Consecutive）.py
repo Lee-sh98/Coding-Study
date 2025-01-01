@@ -1,0 +1,1 @@
+print("NYoe s"["ooo"in[*open(0)][1]::2])
