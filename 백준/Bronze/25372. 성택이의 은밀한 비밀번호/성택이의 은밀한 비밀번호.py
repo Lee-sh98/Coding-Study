@@ -1,0 +1,1 @@
+for s in[*open(0)][1:]:print("nyoe s"[6<len(s)<11::2])
