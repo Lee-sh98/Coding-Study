@@ -1,3 +1,3 @@
-a,*b=input()
-for c in b:a+=c*(a[-1]!=c)
+a=b=""
+for c in input():a+=c*(b!=c);b=c
 print(a)
