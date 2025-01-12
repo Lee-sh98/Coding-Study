@@ -1,2 +1,1 @@
-_,s=open(0)
-print(s.swapcase())
+print([*open(0)][1].swapcase())
