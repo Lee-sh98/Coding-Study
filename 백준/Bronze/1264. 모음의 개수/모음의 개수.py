@@ -1,0 +1,1 @@
+for s in[*map(str.lower,open(0))][:-1]:print(sum(map(s.count,'aeiou')))
