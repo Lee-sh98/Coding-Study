@@ -1,0 +1,1 @@
+for s in[*open(0)][1:]:print("eovdedn"[int(s)%2::2])
