@@ -1,0 +1,1 @@
+for s in[*open(0)][1:]:a,b=s.split();a=int(a);print(b[:a-1]+b[a:])
