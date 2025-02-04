@@ -1,0 +1,1 @@
+print('NYOE S'['gori'in[*open(0)][1]::2])
