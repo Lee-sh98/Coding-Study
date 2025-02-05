@@ -1,0 +1,1 @@
+print(''.join(dict(zip('IENSTFPJ','EISNFTJP'))[i]for i in input()))
