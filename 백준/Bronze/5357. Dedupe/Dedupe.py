@@ -1,3 +1,2 @@
-for s in [*open(0)][1:]:
-    r=""
-    for c in s:print(end=c*(r!=c));r=c
+r,*s=open(0).read()
+for c in s[s.index('\n')+1:]:print(end=c*(r!=c));r=c
