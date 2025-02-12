@@ -1,4 +1,3 @@
 N=int(input())
-A="@"*N
-f=lambda s:[A+s+A]*N
-print(*(a:=f(" "*3*N)),*(b:=f(" "*2*N)),*f(A),*b,*a,sep="\n")
+f=lambda s:["@"*N+s*N+"@"*N]*N
+print(*(a:=f(" "*3)),*(b:=f(" "*2)),*f("@"),*b,*a,sep="\n")
