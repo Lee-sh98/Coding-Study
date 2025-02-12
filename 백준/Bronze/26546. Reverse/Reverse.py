@@ -1,0 +1,1 @@
+for s in[*open(0)][1:]:t,i,j=s.split();print(t[:int(i)]+t[int(j):])
