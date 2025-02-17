@@ -1,0 +1,1 @@
+print("".join(chr(ord(c)^22)for c in input()))
