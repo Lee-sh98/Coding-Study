@@ -1,0 +1,1 @@
+print('NYOE S'[all(c in"IOSHZXN"for c in input())::2])
