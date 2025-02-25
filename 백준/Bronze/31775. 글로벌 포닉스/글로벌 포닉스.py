@@ -1,0 +1,1 @@
+print("GPLOONBIAXL"[{*(s[0]for s in open(0))}!={*'lkp'}::2])
