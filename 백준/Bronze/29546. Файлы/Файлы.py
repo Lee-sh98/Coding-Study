@@ -1,4 +1,3 @@
-s=[input()for _ in" "*int(input())]
-for _ in" "*int(input()):
-    u,v=input().split()
-    print("\n".join(s[int(u)-1:int(v)]))
+i=input
+s=[i()for _ in" "*int(i())]
+for _ in" "*int(i()):u,v=i().split();print("\n".join(s[int(u)-1:int(v)]))
